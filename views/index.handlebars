@@ -1,0 +1,44 @@
+<br>
+<br>
+<div class="container">
+
+    <form action="/" method="POST">
+
+        <h1>Registration Number</h1>
+        <div class="errorMsg">
+            <h2>{{messages.error}}</h2>
+            <h3>{{messages.info}}</h3>
+
+
+        </div>
+        <input type="text" class="reg-textbox" maxlength="9" name="enterReg">
+        <button class="addBtn">Add</button>
+
+        <div>
+            <br>
+            <br>
+
+            <label for="town">Select Town</label>
+            <select name="" class="drop-down">
+                <option value="kraai" class="town">Kraaifontein</option>
+                <option value="blv" class="town">Bellville</option>
+                <option value="stellies" class="town">Stellenboch</option>
+                <option value="cpt" class="town">Cape Town</option>
+            </select>
+        </div>
+    </form>
+    <button type="button" name="button" class="filterButton">Filter</button>
+    <br>
+    <button class="restBtn" type="button" name="langBtn"><a href="/reset">Reset</a></button>
+
+    <h2>Registration Numbers</h2>
+    <div class="reg-plate">
+        {{message}}
+
+    </div>
+</div>
+
+
+{{#each town}}
+<li>{{this.reg_number}}</li>
+{{/each}}
