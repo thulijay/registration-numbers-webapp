@@ -48,3 +48,32 @@ color: red;
   background-color: silver;
   list-style-type: none;
 }
+
+/* 
+.reg {
+
+	background-color: yellow;
+	border: 0.1em solid;
+	border-radius: 0.25em;
+	padding: 1em;
+	margin: 0.5em;
+	width: 7em;
+	text-align: center;
+	font-weight: bold;
+	float: left;
+
+} */
+li{
+  display: block;
+  list-style: none;
+background-color: rgb(204, 204, 44);
+border: 0.1em solid;
+border-radius: 0.25em;
+padding: 1em;
+margin: 0.5em;
+width: 7em;
+text-align: center;
+font-weight: bold;
+align-self: center;
+
+}

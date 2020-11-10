@@ -12,8 +12,8 @@
         </div>
 
         <div class="goodMsg">
-                    <h3>{{messages.info}}</h3>
-                    </div>
+            <h3>{{messages.info}}</h3>
+        </div>
 
         <input type="text" class="reg-textbox" maxlength="9" name="enterReg" placeholder="enter number plate here">
         <button class="addBtn">Add</button>
@@ -32,19 +32,24 @@
         </div>
     </form>
     <form action="filters" method="post">
-    <button type="button" name="button" class="filterButton"><a href="/filters">Filters</a></button>
+        <button type="button" name="button" class="filterButton"><a href="/filters">Filters</a></button>
     </form>
     <br>
     <button class="restBtn" type="button" name="langBtn"><a href="/reset">Reset</a></button>
 
     <h2>Registration Numbers</h2>
     <div class="reg">
+        <ul>
         {{#each town}}
-{{this.reg_number}}
-{{/each}}
+            <li>
+                {{this.reg_number}}
+            </li>
+        {{/each}}
+        </ul>
 
     </div>
 </div>
-        {{message}}
 
 
+
+{{message}}
