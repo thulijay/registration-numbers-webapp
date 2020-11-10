@@ -81,6 +81,11 @@ app.get('/reset', async function (req, res) {
   res.redirect('/');
 })
 
+app.post('/filters'), async function(req,res){
+  await regFactory.filterBtn();
+  res.redirect('/')
+}
+
 let PORT = process.env.PORT || 3001;
 
 app.listen(PORT, function () {

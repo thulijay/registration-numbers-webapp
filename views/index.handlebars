@@ -4,14 +4,18 @@
 
     <form action="/" method="POST">
 
-        <h1>Registration Number</h1>
+        <h1>Registration Web-app</h1>
         <div class="errorMsg">
             <h2>{{messages.error}}</h2>
-            <h3>{{messages.info}}</h3>
 
 
         </div>
-        <input type="text" class="reg-textbox" maxlength="9" name="enterReg">
+
+        <div class="goodMsg">
+                    <h3>{{messages.info}}</h3>
+                    </div>
+
+        <input type="text" class="reg-textbox" maxlength="9" name="enterReg" placeholder="enter number plate here">
         <button class="addBtn">Add</button>
 
         <div>
@@ -27,18 +31,20 @@
             </select>
         </div>
     </form>
-    <button type="button" name="button" class="filterButton">Filter</button>
+    <form action="filters" method="post">
+    <button type="button" name="button" class="filterButton"><a href="/filters">Filters</a></button>
+    </form>
     <br>
     <button class="restBtn" type="button" name="langBtn"><a href="/reset">Reset</a></button>
 
     <h2>Registration Numbers</h2>
-    <div class="reg-plate">
-        {{message}}
+    <div class="reg">
+        {{#each town}}
+{{this.reg_number}}
+{{/each}}
 
     </div>
 </div>
+        {{message}}
 
 
-{{#each town}}
-<li>{{this.reg_number}}</li>
-{{/each}}
