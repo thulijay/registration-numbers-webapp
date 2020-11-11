@@ -35,28 +35,22 @@ module.exports = function registrationNumbers(pool) {
         return TOWNS_QUERY.rows;
     }
 
-    async function filterBtn(regCode) {
-        let regNumbers = await regOutcome();
-
-        if (regCode === "Show All") {
-            return regNumbers;
-        }
-        else {
-            let selectedTown = await pool.query('SELECT reg_number FROM registration_num WHERE town_id = $1', [regCode])
-            return selectedTown.rows;
-        }
-    }
-
     async function resetBtn() {
         await pool.query('DELETE FROM registration_num');
     }
 
+    async function filterBtn(filterReg){
+
+        if(filterReg = 'all'){
+            let filteredTown = await getTownId();
+            return filteredTown.rows
+        }
+    }
     return {
         workFlow,
         duplicateReg,
         regOutcome,
         townOutcome,
-        filterBtn,
         resetBtn
     }
 }

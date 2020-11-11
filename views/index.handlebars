@@ -12,9 +12,9 @@
         </div>
 
         <div class="goodMsg">
-            <h3>{{messages.info}}</h3>
+            <h2>{{messages.info}}</h2>
         </div>
-
+<p><b>Please enter a registration number from the following places: <br> Kraaifontein, Bellville, Stellenboch or Cape Town</b></p>
         <input type="text" class="reg-textbox" maxlength="9" name="enterReg" placeholder="enter number plate here">
         <button class="addBtn">Add</button>
 
@@ -28,11 +28,12 @@
                 <option value="blv" class="town">Bellville</option>
                 <option value="stellies" class="town">Stellenboch</option>
                 <option value="cpt" class="town">Cape Town</option>
+                <option value="all" class="town"> Show All</option>
             </select>
         </div>
     </form>
-    <form action="filters" method="post">
-        <button type="button" name="button" class="filterButton"><a href="/filters">Filters</a></button>
+    <form action="/filter" method="post">
+        <button type="button" name="button" class="filterButton"><a href="/filter">Filter</a></button>
     </form>
     <br>
     <button class="restBtn" type="button" name="langBtn"><a href="/reset">Reset</a></button>

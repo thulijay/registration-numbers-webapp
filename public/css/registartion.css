@@ -22,7 +22,6 @@ color: red;
   padding: 5px;
   outline: none;
   cursor: pointer;
-  color: #314152;
   background-color: #fff;
   margin-top: 15px;
   border: none;
@@ -72,8 +71,24 @@ border-radius: 0.25em;
 padding: 1em;
 margin: 0.5em;
 width: 7em;
-text-align: center;
 font-weight: bold;
-align-self: center;
+}
+
+p{
+  font-family: 'Amaranth';font-size: 15px;
+  color: brown;
+}
+
+h1{
+  font-family: 'Coiny';font-size: 28px;
+}
+
+h2{
+      font-family: 'Coiny';font-size: 22px;
+
+}
+
+label{
+  font-family: 'Coiny';font-size: 18px;
 
 }

@@ -17,4 +17,4 @@ delete from town;
 insert into town (town_name,reg_id) values ('Kraaifontein', 'CF');
 insert into town (town_name,reg_id) values ('Bellville', 'CY');
 insert into town (town_name,reg_id) values ('Stellenboch', 'CL');
-insert into town (town_name,reg_id) values ('Cape Town', 'CA');
+insert into town (town_name,reg_id) values ('Cape Town', 'CA'); 

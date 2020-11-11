@@ -31,14 +31,6 @@ app.use(session({
 }));
 app.use(flash());
 
-
-app.get('/', async function (req, res) {
-  const towns = await regFactory.townOutcome()
-  res.render('index', {
-    town: towns
-  });
-});
-
 app.post('/', async function (req, res) {
   let registrationEntry = req.body.enterReg;
 
@@ -64,14 +56,14 @@ app.post('/', async function (req, res) {
 })
 
 app.get('/', async function (req, res) {
-  let regFilter = req.query.filterBtn;
+  let regFilter = req.body.button;
   // const towns = await regFactory.townOutcome();
 
   if (regFilter) {
     var filterButton = await regFactory.filterBtn(regFilter);
   }
   res.render('index', {
-    registration: filterButton,
+    regPlate: filterButton,
 
   })
 })
@@ -81,12 +73,12 @@ app.get('/reset', async function (req, res) {
   res.redirect('/');
 })
 
-app.post('/filters'), async function(req,res){
+app.get('/filter'), async function(req,res){
   await regFactory.filterBtn();
   res.redirect('/')
 }
 
-let PORT = process.env.PORT || 3001;
+let PORT = process.env.PORT || 3005;
 
 app.listen(PORT, function () {
   console.log('App starting on port', PORT);
