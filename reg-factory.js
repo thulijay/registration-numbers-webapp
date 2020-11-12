@@ -46,6 +46,8 @@ module.exports = function registrationNumbers(pool) {
 
 
     async function filterBtn(filterReg){
+        console.log({filterReg});
+        
 
         if(filterReg === 'all'){
             let filteredTown = await townOutcome();

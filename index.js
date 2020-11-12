@@ -71,11 +71,13 @@ app.get('/reset', async function (req, res) {
 })
 
 app.get('/filter', async function(req,res){
+  // console.log(req.body);
+  
   
 let townId = req.query.towns;
 let townFilter =   await regFactory.filterBtn(townId);
 
-// console.log(townFilter)
+console.log({townFilter})
   res.render('index',{
     town: townFilter
   })
