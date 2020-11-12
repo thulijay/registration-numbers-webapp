@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic);
 body {
-  background-color: rgb(233, 219, 219);
+  background-color: whitesmoke;
   text-align: center;
 }
 
@@ -13,65 +13,49 @@ color: red;
 }
 .container input {
   outline: none;
-  border-radius: 5px;
+  border-radius: 8px;
   border: none;
   padding: 5px;
   margin-top: 2px;
+  background-color: burlywood;
 }
 .container button {
   padding: 5px;
   outline: none;
   cursor: pointer;
-  background-color: #fff;
+  background-color: burlywood;
   margin-top: 15px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 .container select {
-  color: #314152;
-  background-color: #fff;
+  background-color: burlywood;
   outline: none;
-  padding: 5px;
+  padding: 8px;
   margin-top: 15px;
   border: none;
 }
-.container reg {
-  clear: both;
-  color: #314152;
-  border: 2px solid #fff;
-  text-align: center;
-  width: inherit;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 5px;
-  background-color: silver;
-  list-style-type: none;
+
+.reg{
+float: none;
+
 }
 
-/* 
-.reg {
-
-	background-color: yellow;
-	border: 0.1em solid;
-	border-radius: 0.25em;
-	padding: 1em;
-	margin: 0.5em;
-	width: 7em;
-	text-align: center;
-	font-weight: bold;
-	float: left;
-
-} */
 li{
-  display: block;
+  display: inline-table;
   list-style: none;
 background-color: rgb(204, 204, 44);
 border: 0.1em solid;
 border-radius: 0.25em;
 padding: 1em;
-margin: 0.5em;
 width: 7em;
 font-weight: bold;
+align-items: center;
+align-content: center;
+}
+
+ul{
+display: inline;
 }
 
 p{
@@ -84,7 +68,7 @@ h1{
 }
 
 h2{
-      font-family: 'Coiny';font-size: 22px;
+      font-family: 'Coiny';font-size: 22px
 
 }
 

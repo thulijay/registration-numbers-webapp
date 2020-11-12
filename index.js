@@ -31,11 +31,21 @@ app.use(session({
 }));
 app.use(flash());
 
+app.get('/', async function (req, res) {
+  let towns = await regFactory.townOutcome();
+
+  res.render('index', {
+    town: towns
+
+  })
+  })
+
 app.post('/', async function (req, res) {
   let registrationEntry = req.body.enterReg;
 
   let checkDupicate = await regFactory.duplicateReg(registrationEntry);
-  var registrationNumber = await regFactory.regOutcome();
+  let towns = await regFactory.townOutcome();
+  // var registrationNumber = await regFactory.regOutcome();
 
   if (checkDupicate !== 0) {
     req.flash('error', 'Registration number already exists');
@@ -47,24 +57,11 @@ app.post('/', async function (req, res) {
   } else if (!registrationEntry.startsWith('CF ') || !registrationEntry.startsWith('CY ') || !registrationEntry.startsWith('CL ') || !registrationEntry('CA ')) {
     req.flash('error', 'Please enter a valid registration number');
   }
-  let towns = await regFactory.townOutcome();
+
 
   res.render('index', {
-    regPlate: registrationNumber,
+    // regPlate: registrationNumber,
     town: towns
-  })
-})
-
-app.get('/', async function (req, res) {
-  let regFilter = req.body.button;
-  // const towns = await regFactory.townOutcome();
-
-  if (regFilter) {
-    var filterButton = await regFactory.filterBtn(regFilter);
-  }
-  res.render('index', {
-    regPlate: filterButton,
-
   })
 })
 
@@ -73,11 +70,17 @@ app.get('/reset', async function (req, res) {
   res.redirect('/');
 })
 
-app.get('/filter'), async function(req,res){
-  await regFactory.filterBtn();
-  res.redirect('/')
-}
+app.get('/filter', async function(req,res){
+  
+let townId = req.query.towns;
+let townFilter =   await regFactory.filterBtn(townId);
 
+// console.log(townFilter)
+  res.render('index',{
+    town: townFilter
+  })
+
+})
 let PORT = process.env.PORT || 3005;
 
 app.listen(PORT, function () {

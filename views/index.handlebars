@@ -14,41 +14,51 @@
         <div class="goodMsg">
             <h2>{{messages.info}}</h2>
         </div>
-<p><b>Please enter a registration number from the following places: <br> Kraaifontein, Bellville, Stellenboch or Cape Town</b></p>
+        <p><b>Please enter a registration number from the following places: <br> Kraaifontein, Bellville, Stellenboch or
+                Cape Town</b></p>
         <input type="text" class="reg-textbox" maxlength="9" name="enterReg" placeholder="enter number plate here">
         <button class="addBtn">Add</button>
 
         <div>
-            <br>
-            <br>
+    </form>
 
-            <label for="town">Select Town</label>
-            <select name="" class="drop-down">
-                <option value="kraai" class="town">Kraaifontein</option>
-                <option value="blv" class="town">Bellville</option>
-                <option value="stellies" class="town">Stellenboch</option>
-                <option value="cpt" class="town">Cape Town</option>
-                <option value="all" class="town"> Show All</option>
-            </select>
-        </div>
-    </form>
-    <form action="/filter" method="post">
-        <button type="button" name="button" class="filterButton"><a href="/filter">Filter</a></button>
-    </form>
     <br>
-    <button class="restBtn" type="button" name="langBtn"><a href="/reset">Reset</a></button>
+    <br>
+    <form action="/filter" method="get">
 
-    <h2>Registration Numbers</h2>
-    <div class="reg">
-        <ul>
-        {{#each town}}
-            <li>
-                {{this.reg_number}}
-            </li>
-        {{/each}}
-        </ul>
+        <label for="town">Filter Town:</label>
+        <select name="towns" class="drop-down">
+            <option value="all" class="town"> Show All</option>
+            <option value="1" class="town">Kraaifontein</option>
+            <option value="2" class="town">Bellville</option>
+            <option value="3" class="town">Stellenboch</option>
+            <option value="4" class="town">Cape Town</option>
 
-    </div>
+        </select>
+</div>
+<button type="submit" name="filterButton" class="reg-filter"><a href="/filter">Filter</a></button>
+</form>
+
+<button class="restBtn" type="button" name="langBtn"><a href="/reset">Reset</a></button>
+
+<h2>Registration Numbers</h2>
+
+<div class="reg">
+    {{#each town}}
+    <ul>
+
+        <li>
+            {{this.reg_number}}
+
+        </li>
+    </ul>
+
+    {{/each}}
+
+</div>
+<br>
+
+
 </div>
 
 

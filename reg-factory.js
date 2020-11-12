@@ -36,7 +36,7 @@ module.exports = function registrationNumbers(pool) {
     }
 
     async function getReg(regId){
-        let GET_QUERY = await pool.query('select reg_number from registration_num where reg_id = $1', [regId]);
+        let GET_QUERY = await pool.query('select reg_number from registration_num where town_id = $1', [regId]);
         return GET_QUERY.rows
     }
 
@@ -47,12 +47,13 @@ module.exports = function registrationNumbers(pool) {
 
     async function filterBtn(filterReg){
 
-        if(filterReg = 'all'){
-            let filteredTown = await getTownId();
-            return filteredTown.rows
+        if(filterReg === 'all'){
+            let filteredTown = await townOutcome();
+            return filteredTown;
         }else {
-            let testing = await getReg();
-            return testing.rows;
+            let testing = await getReg(filterReg);
+            console.log(testing);
+            return testing;
         }
     }
     return {
@@ -61,7 +62,8 @@ module.exports = function registrationNumbers(pool) {
         regOutcome,
         townOutcome,
         resetBtn,
-        filterBtn
+        filterBtn,
+        getReg
     }
 }
 
