@@ -1,4 +1,3 @@
-
 let express = require('express');
 let app = express();
 const pg = require('pg');
@@ -38,13 +37,17 @@ app.get('/', async function (req, res) {
     town: towns
 
   })
-  })
+})
 
 app.post('/', async function (req, res) {
   let registrationEntry = req.body.enterReg;
+  let regBtn = false;
+
 
   let checkDupicate = await regFactory.duplicateReg(registrationEntry);
-  let towns = await regFactory.townOutcome();
+  console.log(registrationEntry);
+
+  // let townReset = await regFactory.resetBtn(registrationEntry)
   // var registrationNumber = await regFactory.regOutcome();
 
   if (checkDupicate !== 0) {
@@ -58,27 +61,33 @@ app.post('/', async function (req, res) {
     req.flash('error', 'Please enter a valid registration number');
   }
 
-
   res.render('index', {
     // regPlate: registrationNumber,
-    town: towns
+    town: await regFactory.townOutcome()
   })
 })
 
 app.get('/reset', async function (req, res) {
-  await regFactory.resetBtn();
+
+  let clearBtn = req.body.enterReg;
+  let reset = await regFactory.resetTownBtn(clearBtn);
+
+  reset = req.flash('info', 'Data Cleared!')
+
+  await regFactory.resetBtn()
+
   res.redirect('/');
 })
 
-app.get('/filter', async function(req,res){
+app.get('/filter', async function (req, res) {
   // console.log(req.body);
-  
-  
-let townId = req.query.towns;
-let townFilter =   await regFactory.filterBtn(townId);
 
-console.log({townFilter})
-  res.render('index',{
+
+  let townId = req.query.towns;
+  let townFilter = await regFactory.filterBtn(townId);
+
+  console.log({ townFilter })
+  res.render('index', {
     town: townFilter
   })
 

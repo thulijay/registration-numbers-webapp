@@ -44,7 +44,7 @@ float: none;
 li{
   display: inline-table;
   list-style: none;
-background-color: rgb(204, 204, 44);
+background-color: yellow;
 border: 0.1em solid;
 border-radius: 0.25em;
 padding: 1em;
@@ -56,6 +56,11 @@ align-content: center;
 
 ul{
 display: inline;
+}
+
+a{
+  text-decoration: none;
+  color: black;
 }
 
 p{

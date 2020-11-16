@@ -9,7 +9,7 @@ create table town(
 create table registration_num (
 	id serial not null primary key,
 	reg_number text not null,
-    town_id int not null,
+    town_id int,
 	foreign key (town_id) references town(id)
 );
 
