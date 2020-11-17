@@ -7,8 +7,8 @@ node_js:
   - "12"
 
 before_script:
-  - psql -c 'create database  users;' -U postgres
-  - psql -U postgres -d users -a -f iden.sql
+  - psql -c 'create database  reg_tests;' -U postgres
+  - psql -U postgres -d users -a -f reg.sql
 
 services:
   - postgresql
