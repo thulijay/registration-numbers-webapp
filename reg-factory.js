@@ -1,82 +1,87 @@
 module.exports = function registrationNumbers(pool) {
 
-    async function workFlow(item){
+    async function workFlow(regEntry) {
 
-    const regEntry = item
+        regEntry = regEntry.toUpperCase();
 
-    const dbTownsId = await pool.query(`select id from town where reg_id = $1`, [regEntry]);
-    console.log(dbTownsId)
-    const townsId = dbTownsId.rows[0];
+        let townId = await getTownId(regEntry.split(" ")[0]);
 
 
-    let selectRegistration = await pool.query('select * from registration_num where reg_number = $1', [townsId]);
-
-    if (selectRegistration.rowCount === 0) {
-        await pool.query('INSERT INTO registration_num (reg_number, town_id) values ($1,$2)', [regEntry, townsId]);
-        return true;
+        if (regEntry.length <= 10) {
+            let selectRegistration = await pool.query('select reg_number from registration_num where reg_number = $1', [regEntry]);
+        
+        if (selectRegistration.rowCount === 0) {
+            await pool.query('insert into registration_num (reg_number, town_id) values ($1,$2)', [regEntry, townId]);
+        }
+            return false;
+        }
     }
-}
 
 
-async function duplicateReg(regEntry) {
-    let CHECK_QUERY = await pool.query('select reg_number from registration_num where reg_number = $1', [regEntry]);
-    return CHECK_QUERY.rowCount;
-}
-
-async function getTownId(townId) {
-    let REG_QUERY = await pool.query("select id from town where reg_id = $1", [townId]);
-    return REG_QUERY.rows[0][id];
-}
-
-async function regOutcome() {
-    let TOWN_QUERY = await pool.query('select reg_number, town_id from registration_num');
-    return TOWN_QUERY.rows;
-}
-
-async function townOutcome() {
-    let TOWNS_QUERY = await pool.query('select * from registration_num');
-    return TOWNS_QUERY.rows;
-}
-
-async function getReg(regId) {
-    let GET_QUERY = await pool.query('select reg_number from registration_num where town_id = $1', [regId]);
-    return GET_QUERY.rows
-}
-
-async function resetBtn() {
-    let RESET_QUERY = await pool.query('DELETE FROM registration_num');
-}
-
-async function resetTownBtn(){
-    let touched = false;
-
-    if(!touched){
-        await resetBtn();
-        // return 'Database Cleared!'
+    async function insertData(insertReg){
+        let INSERT_QUERY = await pool.query('insert into registration_num (reg_number) values ($1)', [insertReg]);
+        return INSERT_QUERY.rows;
     }
-}
 
-async function filterBtn(filterReg) {
-    console.log({ filterReg });
-
-
-    if (filterReg === 'all') {
-        let filteredTown = await townOutcome();
-        return filteredTown;
-    } else {
-        let testing = await getReg(filterReg);
-        console.log(testing);
-        return testing;
+    async function duplicateReg(regEntry) {
+        let CHECK_QUERY = await pool.query('select reg_number from registration_num where reg_number = $1', [regEntry]);
+        return CHECK_QUERY.rowCount;
     }
-}
-return {
-    workFlow,
-    duplicateReg,
-    regOutcome,
-    townOutcome,
-    resetBtn,
-    filterBtn,
-    getReg,
-    resetTownBtn
-}
+
+    async function getTownId(towns) {
+        let REG_QUERY = await pool.query("select id from town where reg_id = $1", [towns]);
+        console.log(REG_QUERY)
+        return REG_QUERY.rows;
+    }
+
+    // async function regOutcome() {
+    //     let TOWN_QUERY = await pool.query('select reg_number from registration_num');
+    //     return TOWN_QUERY.rows;
+    // }
+
+    async function townOutcome() {
+        let TOWNS_QUERY = await pool.query('select reg_number from registration_num');
+        return TOWNS_QUERY.rows;
+    }
+
+    async function resetBtn() {
+        await pool.query('DELETE FROM registration_num');
+    }
+
+    async function getReg(regId) {
+        let GET_QUERY = await pool.query('select reg_number from registration_num where town_id = $1', [regId]);
+        return GET_QUERY.rows
+    }
+
+    async function resetTownBtn(){
+        let resetTown = false;
+    
+        if(!resetTown){
+            await resetBtn();
+        }
+    }
+    
+    async function filterBtn(filterReg) {
+        // console.log({ filterReg });
+    
+    
+        if (filterReg === 'all') {
+            let filteredTown = await townOutcome();
+            return filteredTown;
+        } else {
+            let testing = await getReg(filterReg);
+            // console.log(testing);
+            return testing;
+        }
+    }
+    return {
+        workFlow,
+        duplicateReg,
+        townOutcome,
+        resetBtn, 
+        filterBtn,
+        resetTownBtn,
+        insertData,
+        getReg
+    }
 }
