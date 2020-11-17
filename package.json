@@ -29,5 +29,8 @@
     "sudo": "^1.0.3"
   },
   "devDependencies": {},
+  "directories": {
+    "test": "test"
+  },
   "description": ""
 }
