@@ -14,6 +14,8 @@ const pool = new Pool({
 });
 
 const regFactory = RegFactory(pool);
+const routesReg = require('./routes');
+const regR = routesReg(routesReg)
 
 const exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
@@ -30,68 +32,15 @@ app.use(session({
 }));
 app.use(flash());
 
-app.get('/', async function (req, res) {
-  let towns = await regFactory.townOutcome();
+app.get('/', regR.homeRoute)
 
-  res.render('index', {
-    town: towns
+app.post('/', regR.flashMsg)
 
-  })
-})
+app.get('/reset', regR.resetReg)
 
-app.post('/', async function (req, res) {
-  let registrationEntry = req.body.enterReg;
-  let regBtn = false;
+app.get('/filter', regR.filterReg)
 
 
-  let checkDupicate = await regFactory.duplicateReg(registrationEntry);
-  console.log(registrationEntry);
-
-  // let townReset = await regFactory.resetBtn(registrationEntry)
-  // var registrationNumber = await regFactory.regOutcome();
-
-  if (checkDupicate !== 0) {
-    req.flash('error', 'Registration number already exists');
-  } else if (!registrationEntry) {
-    req.flash('error', 'Please enter a registration number');
-  } else if (registrationEntry.startsWith('CF ') || registrationEntry.startsWith('CY ') || registrationEntry.startsWith('CL ') || registrationEntry.startsWith('CA ')) {
-    req.flash('info', 'Registration number added')
-    await regFactory.workFlow(registrationEntry);
-  } else if (!registrationEntry.startsWith('CF ') || !registrationEntry.startsWith('CY ') || !registrationEntry.startsWith('CL ') || !registrationEntry('CA ')) {
-    req.flash('error', 'Please enter a valid registration number');
-  }
-
-  res.render('index', {
-    // regPlate: registrationNumber,
-    town: await regFactory.townOutcome()
-  })
-})
-
-app.get('/reset', async function (req, res) {
-
-  let clearBtn = req.body.enterReg;
-  let reset = await regFactory.resetTownBtn(clearBtn);
-
-  reset = req.flash('info', 'Data Cleared!')
-
-  await regFactory.resetBtn()
-
-  res.redirect('/');
-})
-
-app.get('/filter', async function (req, res) {
-  // console.log(req.body);
-
-
-  let townId = req.query.towns;
-  let townFilter = await regFactory.filterBtn(townId);
-
-  console.log({ townFilter })
-  res.render('index', {
-    town: townFilter
-  })
-
-})
 let PORT = process.env.PORT || 3005;
 
 app.listen(PORT, function () {
