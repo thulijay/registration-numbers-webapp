@@ -22,13 +22,7 @@ beforeEach(async function(){
         assert.equal(false,await flow.townOutcome('CAA 458 566'));
 
     })
-    // it('should be able to add a registration number from Kraaifontein', async function(){
-    //     let flow = reg(pool);
 
-    //     assert.equal([],await flow.townOutcome('CF 458 566'));
-    // })
-
-  
     it('should be able to add a registration number from Kraaifontein', async function(){
         let flow = reg(pool);
 
@@ -75,17 +69,3 @@ beforeEach(async function(){
     })
     
 })
-    // it('should be able to add a registration number from Kraaifontein', async function(){
-    //     let flow = reg(pool);
-    //     let outReg = await flow.workFlow('CF 484 526');
-
-    //     assert.equal([{'reg_numbers':'CF 484 526'}], await flow.regOutcome());
-    // })
-    // it('should be able to add a regostration number from Bellville ', async function(){
-    //     let flow = reg(pool);
-
-    //     await flow.getReg(regId)
-    //     let outReg = await flow.regOutcome('CY 789 561');
-
-    //     assert.equal(1, outReg.rows)
-    // })
