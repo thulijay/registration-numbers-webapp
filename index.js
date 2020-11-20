@@ -4,7 +4,6 @@ const pg = require('pg');
 const bodyParser = require('body-parser')
 const flash = require('express-flash');
 const session = require('express-session');
-const RegFactory = require('./reg-factory');
 
 const Pool = pg.Pool;
 
@@ -13,9 +12,10 @@ const pool = new Pool({
   connectionString
 });
 
-const regFactory = RegFactory(pool);
+const RegFactory = require('./reg-factory');
 const routesReg = require('./routes');
-const regR = routesReg(routesReg)
+const regFactory = RegFactory(pool);
+const regR = routesReg(regFactory)
 
 const exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));

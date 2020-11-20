@@ -30,14 +30,8 @@ module.exports = function registrationNumbers(pool) {
 
     async function getTownId(towns) {
         let REG_QUERY = await pool.query("select id from town where reg_id = $1", [towns]);
-        console.log(REG_QUERY)
-        return REG_QUERY.rows;
+        return REG_QUERY.rows[0]['id'];
     }
-
-    // async function regOutcome() {
-    //     let TOWN_QUERY = await pool.query('select reg_number from registration_num');
-    //     return TOWN_QUERY.rows;
-    // }
 
     async function townOutcome() {
         let TOWNS_QUERY = await pool.query('select reg_number from registration_num');
@@ -62,15 +56,11 @@ module.exports = function registrationNumbers(pool) {
     }
     
     async function filterBtn(filterReg) {
-        // console.log({ filterReg });
-    
-    
         if (filterReg === 'all') {
             let filteredTown = await townOutcome();
             return filteredTown;
         } else {
             let testing = await getReg(filterReg);
-            // console.log(testing);
             return testing;
         }
     }
