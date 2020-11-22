@@ -62,7 +62,7 @@ module.exports = function registrationNumbers(pool) {
             let filteredTown = await townOutcome();
             return filteredTown;
         } else {
-            let testing = await townOutcome(filterReg);
+            let testing = await getReg(filterReg);
             return testing;
         }
     }
@@ -75,6 +75,7 @@ module.exports = function registrationNumbers(pool) {
         resetTownBtn,
         insertData,
         getReg,
+        // townSelection,
         getTownId
     }
 }
