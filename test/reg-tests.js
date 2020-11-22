@@ -96,48 +96,48 @@ describe('Testing Registration Numbers', function () {
   it('should only filter Cape Town', async function () {
     let flow = reg(pool);
 
-    await flow.workFlow('CA 689 561');
+    await flow.workFlow('CA 689-561');
     await flow.workFlow('CL 745 789');
     await flow.workFlow('CL 145 208');
 
     let outReg = await flow.filterBtn(8);
 // console.log(outReg)
-    assert.deepStrictEqual(outReg, [{ reg_number: 'CA 689 561' }])
+    assert.deepStrictEqual(outReg, [{ reg_number: 'CA 689-561' }])
   })
 
   it('should only filter Kraaifontein', async function () {
     let flow = reg(pool);
 
-    await flow.workFlow('CF 889 561');
+    await flow.workFlow('CF 889-561');
     await flow.workFlow('CA 745 789');
     await flow.workFlow('CL 145 208');
 
     let outReg = await flow.filterBtn(5);
 
-    assert.deepStrictEqual(outReg, [{ reg_number: 'CF 889 561' }])
+    assert.deepStrictEqual(outReg, [{ reg_number: 'CF 889-561' }])
   })
 
   it('should only filter Stellenbosch', async function () {
     let flow = reg(pool);
 
-    await flow.workFlow('CL 689 561');
+    await flow.workFlow('CL 689-561');
     await flow.workFlow('CA 745 789');
     await flow.workFlow('CY 145 208');
 
     let outReg = await flow.filterBtn(7);
 // console.log(outReg)
-    assert.deepStrictEqual(outReg, [{ reg_number: 'CL 689 561' }])
+    assert.deepStrictEqual(outReg, [{ reg_number: 'CL 689-561' }])
   })
 
   it('should only filter Belville', async function () {
     let flow = reg(pool);
 
-    await flow.workFlow('CY 689 561');
+    await flow.workFlow('CY 689-561');
     await flow.workFlow('CA 745 789');
     await flow.workFlow('CL 145 208');
 
     let outReg = await flow.filterBtn(6);
 // console.log(outReg)
-    assert.deepStrictEqual(outReg, [{ reg_number: 'CY 689 561' }])
+    assert.deepStrictEqual(outReg, [{ reg_number: 'CY 689-561' }])
   })
 })
