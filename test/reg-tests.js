@@ -100,7 +100,7 @@ describe('Testing Registration Numbers', function () {
     await flow.workFlow('CL 745 789');
     await flow.workFlow('CL 145 208');
 
-    let outReg = await flow.filterBtn(8);
+    let outReg = await flow.filterBtn(4);
 // console.log(outReg)
     assert.deepStrictEqual(outReg, [{ "reg_number": "CA 689-561" }])
   })
@@ -112,7 +112,7 @@ describe('Testing Registration Numbers', function () {
     await flow.workFlow('CA 745 789');
     await flow.workFlow('CL 145 208');
 
-    let outReg = await flow.filterBtn(5);
+    let outReg = await flow.filterBtn(1);
 
     assert.deepStrictEqual(outReg, [{ "reg_number": "CF 889-561" }])
   })
@@ -124,7 +124,7 @@ describe('Testing Registration Numbers', function () {
     await flow.workFlow('CA 745 789');
     await flow.workFlow('CY 145 208');
 
-    let outReg = await flow.filterBtn(7);
+    let outReg = await flow.filterBtn(3);
 // console.log(outReg)
     assert.deepStrictEqual(outReg, [{ "reg_number": "CL 689-561" }])
   })
@@ -136,7 +136,7 @@ describe('Testing Registration Numbers', function () {
     await flow.workFlow('CA 745 789');
     await flow.workFlow('CL 145 208');
 
-    let outReg = await flow.filterBtn(6);
+    let outReg = await flow.filterBtn(2);
 // console.log(outReg)
     assert.deepStrictEqual(outReg, [{ "reg_number": "CY 689-561" }])
   })
