@@ -140,4 +140,15 @@ describe('Testing Registration Numbers', function () {
 // console.log(outReg)
     assert.deepStrictEqual(outReg, [{ "reg_number": "CY 689-561" }])
   })
+
+  it('should not add a registration number more than once', async function(){
+      let flow = reg(pool)
+      
+      await flow.workFlow('CY 458 565');
+      await flow.workFlow('CY 458 565');
+
+      let outReg = await flow.duplicateReg();
+
+      assert.deepStrictEqual(outReg, 0)
+  })
 })
